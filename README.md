@@ -48,7 +48,7 @@
 | purchase_record | references | null: false, foreign_key: true |
 ### Association
 
-- has_one :purchase_records
+- belongs_to :purchase_records
 
 ## purchase_records テーブル
 
@@ -61,4 +61,4 @@
 
 - belongs_to :user
 - belongs_to :item
-- belongs_to :purchase
+- has_one :purchase
