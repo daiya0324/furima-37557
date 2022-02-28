@@ -36,7 +36,6 @@ class ItemsController < ApplicationController
 
   def destroy
     @item.destroy
-    redirect_to action: :index
   end
 
   private
@@ -52,5 +51,6 @@ class ItemsController < ApplicationController
 
   def move_to_index
     redirect_to action: :index unless user_signed_in?
+    redirect_to action: :index unless current_user.id == @item.user_id
   end
 end
