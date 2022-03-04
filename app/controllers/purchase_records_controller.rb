@@ -1,8 +1,7 @@
 class PurchaseRecordsController < ApplicationController
-
+  before_action :set_item
   def index
     @purchase_purchase_record = PurchasePurchaseRecord.new
-    @item = Item.find(params[:item_id])
   end
 
   def create
@@ -11,6 +10,7 @@ class PurchaseRecordsController < ApplicationController
       @purchase_purchase_record.save
       redirect_to root_path
     else
+      @item = Item.find(params[:item_id])
       render :index
     end
   end
@@ -21,4 +21,7 @@ class PurchaseRecordsController < ApplicationController
     params.require(:purchase_purchase_record).permit(:postal_code, :prefecture_id, :municipalities, :address, :building, :phone_number).merge(user_id: current_user.id, item_id: params[:item_id])
   end
 
+  def set_item
+    @item = Item.find(params[:item_id])
+  end
 end

@@ -8,7 +8,6 @@ class PurchasePurchaseRecord
   validates :phone_number, format: { with: /\A\d{10,11}\z/ }
 
   def save
-    binding.pry
     purchase_record = PurchaseRecord.create(user_id: user_id, item_id: item_id)
     Purchase.create(postal_code: postal_code, prefecture_id: prefecture_id, municipalities: municipalities, address: address, building: building, phone_number: phone_number, purchase_record_id: purchase_record.id)
   end
