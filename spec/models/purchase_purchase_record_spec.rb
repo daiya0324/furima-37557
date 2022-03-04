@@ -76,6 +76,11 @@ RSpec.describe PurchasePurchaseRecord, type: :model do
         @purchase_purchase_record.valid?
         expect(@purchase_purchase_record.errors.full_messages).to include("Item can't be blank")
       end
+      it "tokenが空では登録できないこと" do
+        @purchase_purchase_record.token = nil
+        @purchase_purchase_record.valid?
+        expect(@purchase_purchase_record.errors.full_messages).to include("Token can't be blank")
+      end
     end
   end
 end
