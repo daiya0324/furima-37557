@@ -33,13 +33,13 @@ class PurchaseRecordsController < ApplicationController
   def pay_item
     Payjp.api_key = ENV['PAYJP_SECRET_KEY']
     Payjp::Charge.create(
-      amount: @item.price,  # 商品の値段
-      card: purchase_record_params[:token],    # カードトークン
+      amount: @item.price,
+      card: purchase_record_params[:token],
       currency: 'jpy'
     )
   end
 
   def move_to_index
-    redirect_to root_path unless current_user.id == @item.user_id && @item.purchase_record.nil?
+    redirect_to root_path if current_user.id == @item.user_id || @item.purchase_record != nil
   end
 end
