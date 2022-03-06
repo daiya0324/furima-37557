@@ -4,7 +4,6 @@ class PurchaseRecordsController < ApplicationController
   before_action :move_to_index
   def index
     @purchase_purchase_record = PurchasePurchaseRecord.new
-    redirect_to root_path if current_user == @item.user
   end
 
   def create
